@@ -19,7 +19,6 @@ const renderProduct = (item) => {
 const renderPage = list => {
     const productsList = list.map(item =>
         renderProduct(item));
-    console.log(productsList);
     /* При присваивании массиву свойство .innerHTML, у него автоматически
     вызывается метод .toString, который эквивалентен вызову метода .join(',').
     Таким образом, если разделители не нужны, необходимо вызвать .join явно, 
