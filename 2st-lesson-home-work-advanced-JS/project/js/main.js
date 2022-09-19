@@ -4,22 +4,23 @@ class ProductList {
         this.goods = [];
         this._fetchProducts();//рекомендация, чтобы метод был вызван в текущем классе
         this.render();//вывод товаров на страницу
-        this.sumGoods = 0;//стоимость всех товаров
+        /* this.sumGoods = 0 */;//стоимость всех товаров
         this.getSumGoods();
-        this.showInfo();
     }
 
     getSumGoods() {
         /* for (let i = 0; i < this.goods.length; i++) {
             this.sumGoods += this.goods[i].price;
         } */
-        this.goods.forEach(good => {
-            this.sumGoods += good.price;
-        })
-    }
 
-    showInfo() {
-        console.log(`Общая сумма товаров: ${this.sumGoods}`)
+        /* let sumGoods = 0;
+        this.goods.forEach(good => {
+            sumGoods += good.price;
+        })
+        alert(`Общая сумма товаров: ${sumGoods}`) */
+
+        let sumGoods = this.goods.reduce((s, item) => s + item.price, 0);
+        alert(`Общая сумма товаров: ${sumGoods}`)
     }
 
     _fetchProducts() {
@@ -60,25 +61,15 @@ class ProductItem {
     }
 }
 
-class cart {
-    constructor(cart) {
-        this.totalPrice = 0;
-    }
-
-    showCart() { }
-    getTotalCartGoodsPrice() { }
+class Cart {
+    addGood() { }
+    removeGood() { }
+    changeGood() { }
+    render() { }
 }
 
-class cartGoods {
-    constructor(cartGood) {
-        this.cartGoodTitle = cartGoodTitle;
-        this.cartGoodId = cartGoodId;
-        this.cartGoodPrice = cartGoodPrice;
-    }
-
-    getCartGoodsList() { }
-    getTotalCartGoodsPrice() { }
-
+class CartGood {
+    render() { }
 }
 
 let list = new ProductList();
