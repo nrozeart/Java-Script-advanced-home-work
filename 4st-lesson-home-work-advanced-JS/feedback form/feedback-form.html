@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить.
+При нажатии на кнопку Отправить произвести валидацию полей следующим образом:
+a. Имя содержит только буквы.
+b. Телефон имеет вид +7(000)000-0000.
+c. E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.
+d. Текст произвольный.
+e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой
+и сообщить пользователю об ошибке. -->
+
+    <form action="#" class="feedback-form">
+        <p>Feedback Form</p>
+        <input class="user-name" type="text" placeholder="Введите имя">
+        <input class="user-phone" type="text" placeholder="Введите телефон в формате +7(000)000-0000">
+        <input class="user-e-mail" type="text" placeholder="Введите E-mail">
+        <input class="user-text" type="text" placeholder="Введите произвольный текст">
+        <button class="btn" type="submit">Отправить</button>
+
+    </form>
+
+    <script>
+        const regexpName = /[a-zА-Я]+/i;
+        const regexpPhone = /^\+7\([0-9]{3}\)[0-9]{3}\-[0-9]{4}$/;
+        const regexpEmail = /^([a-z]{6})|([a-z]{2}\.[a-z]{4})|([a-z]{2}-[a-z]{4})@(mail\.ru)$/;
+        const regexpText = /[a-zА-Я]+/i;
+
+        const userNameInput = document.querySelector('.user-name');
+        const userPhoneInput = document.querySelector('.user-phone');
+        const userEmailInput = document.querySelector('.user-e-mail');
+        const userTextInput = document.querySelector('.user-text');
+
+
+        document.querySelector('.btn').addEventListener('click', () => {
+            if (!regexpName.test(userNameInput.value)) {
+                userNameInput.classList.add('error');
+            }
+            else {
+                userNameInput.classList.remove('error');
+            };
+            if (!regexpPhone.test(userPhoneInput.value)) {
+                userPhoneInput.classList.add('error');
+            }
+            else {
+                userPhoneInput.classList.remove('error');
+            };
+            if (!regexpEmail.test(userEmailInput.value)) {
+                userEmailInput.classList.add('error');
+            }
+            else {
+                userEmailInput.classList.remove('error');
+            };
+            if (!regexpText.test(userTextInput.value)) {
+                userTextInput.classList.add('error');
+            }
+            else {
+                userTextInput.classList.remove('error');
+            };
+        });
+    </script>
+</body>
+
+</html>
