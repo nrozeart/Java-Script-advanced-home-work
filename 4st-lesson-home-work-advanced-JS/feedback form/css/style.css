@@ -13,7 +13,15 @@ input {
     width: 100px;
 }
 
-.error {
+.invalid {
     border: 2px solid red;
+}
+
+.valid {
+    border: 2px solid green;
+}
+
+.error-msg {
+    color: red;
     ;
 }

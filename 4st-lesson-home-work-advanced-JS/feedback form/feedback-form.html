@@ -19,54 +19,45 @@ d. Текст произвольный.
 e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой
 и сообщить пользователю об ошибке. -->
 
-    <form action="#" class="feedback-form">
+    <form action="#" class="feedback-form" id="myform">
         <p>Feedback Form</p>
-        <input class="user-name" type="text" placeholder="Введите имя">
-        <input class="user-phone" type="text" placeholder="Введите телефон в формате +7(000)000-0000">
-        <input class="user-e-mail" type="text" placeholder="Введите E-mail">
-        <input class="user-text" type="text" placeholder="Введите произвольный текст">
-        <button class="btn" type="submit">Отправить</button>
+        <div>
+            <label for="">
+                Your name <br>
+                <input class="user-name" type="text" name="name" id="name">
+            </label>
+        </div>
+        <div>
+            <label for="">
+                Your phone <br>
+                <input class="user-phone" type="text" name="phone" id="phone" placeholder="+7(000)000-0000">
+            </label>
+        </div>
+        <div>
+            <label for="">
+                Your e-mail <br>
+                <input class="user-e-mail" type="text" name="email" id="email">
+            </label>
+        </div>
+        <div>
+            <label for="">
+                Text <br>
+                <input class="user-text" type="text" name="text" id="text">
+            </label>
+        </div>
+        <button id="val-btn" class="btn" type="submit">Отправить</button>
 
     </form>
-
+    <script src="./validator.js"></script>
     <script>
-        const regexpName = /[a-zА-Я]+/i;
-        const regexpPhone = /^\+7\([0-9]{3}\)[0-9]{3}\-[0-9]{4}$/;
-        const regexpEmail = /^([a-z]{6})|([a-z]{2}\.[a-z]{4})|([a-z]{2}-[a-z]{4})@(mail\.ru)$/;
-        const regexpText = /[a-zА-Я]+/i;
-
-        const userNameInput = document.querySelector('.user-name');
-        const userPhoneInput = document.querySelector('.user-phone');
-        const userEmailInput = document.querySelector('.user-e-mail');
-        const userTextInput = document.querySelector('.user-text');
-
-
-        document.querySelector('.btn').addEventListener('click', () => {
-            if (!regexpName.test(userNameInput.value)) {
-                userNameInput.classList.add('error');
-            }
-            else {
-                userNameInput.classList.remove('error');
-            };
-            if (!regexpPhone.test(userPhoneInput.value)) {
-                userPhoneInput.classList.add('error');
-            }
-            else {
-                userPhoneInput.classList.remove('error');
-            };
-            if (!regexpEmail.test(userEmailInput.value)) {
-                userEmailInput.classList.add('error');
-            }
-            else {
-                userEmailInput.classList.remove('error');
-            };
-            if (!regexpText.test(userTextInput.value)) {
-                userTextInput.classList.add('error');
-            }
-            else {
-                userTextInput.classList.remove('error');
-            };
-        });
+        window.onload = () => {
+            document.getElementById('myform').addEventListener('submit', e => {
+                let valid = new Validator('myform');
+                if (!valid.valid) {
+                    e.preventDefault();
+                }
+            })
+        }
     </script>
 </body>
 
