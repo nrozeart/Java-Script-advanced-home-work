@@ -32,6 +32,14 @@ const app = new Vue({
                 this.$set(product, 'quantity', 1);
                 this.cart.push(product);
             }
+        },
+        deleteProduct(product) {
+            const find = this.cart.find(item => product.id_product == item.id_product);
+            if (find.quantity > 1) {
+                find.quantity--;
+            } else {
+                this.cart.splice(product.id_product, product);
+            }
         }
     },
     mounted() {

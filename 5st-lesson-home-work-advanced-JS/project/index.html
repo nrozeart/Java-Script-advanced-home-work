@@ -41,7 +41,7 @@
                         <p>Стоимость товара: {{product.price}} $</p>
                         <p>Количество товара: {{product.quantity}} $</p>
                         <p>Общая стоимость товара: {{product.quantity * product.price}} $</p>
-                        <button class="buy-btn">Удалить</button><br><br>
+                        <button class="del-btn" @click="deleteProduct(product)">Удалить</button><br><br>
                         <hr>
                     </div>
                 </div>
