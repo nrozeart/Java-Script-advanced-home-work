@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <div v-for="item of goods">
+            <p>Название товара: {{ item.title }}</p>
+            <p>Стоимость товара: {{ item.price }}</p>
+            <img width="200" :src="item.img" :alt="item.title"><br>
+            <button @click="addProduct(item)">Купить</button>
+            <hr>
+        </div>
+        <hr>
+        <h1>Товары корзины</h1>
+        <div v-for="item of cart">
+            <p>Название товара: {{ item.title }}</p>
+            <p>Стоимость товара: {{ item.price }}</p>
+            <p>Стоимость товара: {{ item.quantity }}</p>
+            <img width="200" :src="item.img" :alt="item.title"><br>
+            <hr>
+        </div>
+
+
+        <hr>
+        <h1>Привет, {{ name }}!</h1>
+        <a :href="url">Перейти в поисковик</a>
+        <h2>{{ hello() }}</h2>
+<!--        <button @click="counter++">OK{{ counter }}</button>-->
+        <button @click="increase(forCounter)">OK{{ counter }}</button>
+        <div v-show="show">
+            <p v-if="show">Элемент отображается</p>
+            <p v-else>Элемент не отображается</p>
+        </div>
+        <button @click="show=!show">Show(hide)</button>
+
+        <p>{{ counter >= 10 ? "Счетчик >= 10" : "Счетчик меньше 10" }}</p>
+        <p @mousemove="getCoordinates($event)">В этом тексте контролируем движение курсора мышки {{ x }} / {{ y }}
+            <span @mousemove.stop>Данный текст не реагирует на движение курсора мышки</span>
+        </p>
+
+        <input type="text" v-model.lazy="name">
+        <div v-html="my_html"></div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data:{
+                name:'Иван',
+                url: 'https://google.com',
+                counter:0,
+                forCounter:2,
+                show:false,
+                x:0,
+                y:0,
+                my_html:'<a href="https://google.com">Ссылка</a>',
+                goods:[],
+                cart:[]
+            },
+            methods:{
+                hello(){
+                    return `Добрый день, ${this.name}!`
+                },
+                increase(step){
+                    this.counter += step;
+                },
+                getCoordinates(e){
+                    this.x = e.clientX;
+                    this.y = e.clientY;
+                },
+                addProduct(item){
+                    let find = this.cart.find(product => item.id === product.id);
+                    if(find){
+                        find.quantity++;
+                    }else{
+                        // let itemCart = Object.assign(item,{quantity:1});
+                        this.$set(item,'quantity',1);
+                        this.cart.push(item);
+
+                    }
+                }
+            },
+            mounted(){
+                this.goods = [
+                    {
+                        id:1,
+                        title:'BMW',
+                        price:1500,
+                        img:'img/bmw.jpg'
+                    },
+                    {
+                        id: 2,
+                        title: 'Skoda',
+                        price: 1200,
+                        img: 'img/Skoda.jpg'
+                    },
+                    {
+                        id:3,
+                        title:'VW',
+                        price:1100,
+                        img:'img/VW.jpg'
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

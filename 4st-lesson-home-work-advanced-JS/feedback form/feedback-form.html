@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить.
+При нажатии на кнопку Отправить произвести валидацию полей следующим образом:
+a. Имя содержит только буквы.
+b. Телефон имеет вид +7(000)000-0000.
+c. E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.
+d. Текст произвольный.
+e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой
+и сообщить пользователю об ошибке. -->
+
+    <form action="#" class="feedback-form" id="myform">
+        <p>Feedback Form</p>
+        <div>
+            <label for="">
+                Your name <br>
+                <input class="user-name" type="text" name="name" id="name">
+            </label>
+        </div>
+        <div>
+            <label for="">
+                Your phone <br>
+                <input class="user-phone" type="text" name="phone" id="phone" placeholder="+7(000)000-0000">
+            </label>
+        </div>
+        <div>
+            <label for="">
+                Your e-mail <br>
+                <input class="user-e-mail" type="text" name="email" id="email">
+            </label>
+        </div>
+        <div>
+            <label for="">
+                Text <br>
+                <input class="user-text" type="text" name="text" id="text">
+            </label>
+        </div>
+        <button id="val-btn" class="btn" type="submit">Отправить</button>
+
+    </form>
+    <script src="./validator.js"></script>
+    <script>
+        window.onload = () => {
+            document.getElementById('myform').addEventListener('submit', e => {
+                let valid = new Validator('myform');
+                if (!valid.valid) {
+                    e.preventDefault();
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
