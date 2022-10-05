@@ -13,12 +13,7 @@
         <header>
             <div class="logo">E-shop</div>
             <div class="cart">
-                <form action="#" class="search-form" @submit.prevent="filter">
-                    <input type="text" class="search-field" v-model="userSearch">
-                    <button class="btn-search" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
+                <search></search>
                 <button class="btn-cart" @click="showCart=!showCart" type="button">Корзина</button>
                 <div v-show="showCart" class="cart-block">
                     <p v-if="!cart.length">Cart is empty</p>
