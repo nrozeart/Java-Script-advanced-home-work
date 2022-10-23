@@ -3,35 +3,14 @@
     "countGoods": 2,
     "contents": [
         {
-            "quantity": 8,
-            "id_product": 123,
-            "product_name": "ELLERY X M’O CAPSULE",
-            "price": 52,
-            "img": "../img/item3.png"
-        },
-        {
-            "quantity": 5,
+            "quantity": 10,
             "id_product": 457,
             "product_name": "ELLERY X M’O CAPSULE",
             "price": 52,
             "img": "../img/item2.png"
         },
         {
-            "quantity": 1,
-            "id_product": 456,
-            "product_name": "ELLERY X M’O CAPSULE",
-            "price": 52,
-            "img": "../img/item4.png"
-        },
-        {
-            "quantity": 1,
-            "id_product": 456,
-            "product_name": "ELLERY X M’O CAPSULE",
-            "price": 52,
-            "img": "../img/item4.png"
-        },
-        {
-            "quantity": 1,
+            "quantity": 26,
             "id_product": 123,
             "product_name": "ELLERY X M’O CAPSULE",
             "price": 52,

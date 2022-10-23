@@ -19,11 +19,16 @@ Vue.component('cart', {
     methods: {
         addProduct(item) {
             let find = this.cartItems.find(el => el.id_product === item.id_product);
+            let sum = 0;
             if (find) {
                 this.$parent.putJson(`/api/cart/${find.id_product}`, { quantity: 1 })
                     .then(data => {
                         if (data.result === 1) {
-                            find.quantity++
+                            find.quantity++;
+                            for (let i = 0; i < this.cartItems.length; i++) {
+                                sum += this.cartItems[i].quantity * this.cartItems[i].price;
+                                return (sum);
+                            }
                         }
                     })
             } else {
@@ -60,16 +65,7 @@ Vue.component('cart', {
                         }
                     }
                 })
-        },
-        getSum(item) {
-            if (!cartItems.length == 0) {
-                let sum = 0;
-                for (let i = 0; i < cartItems.length; i++) {
-                    sum += cartItems[i].quantity * cartItems[i].price;
-                    return (sum);
-                }
-            }
-        },
+        }
     },
     template: `<div>
         <button class="btn-cart" type="button" @click="showCart = !showCart">Cart</button>
@@ -77,7 +73,7 @@ Vue.component('cart', {
             <p v-show="cartItems.length == 0">Cart is empty</p>
             <cart-item v-for="item of cartItems" :key="item.id_product" :img="item.img" :cart-item="item" @remove="remove">
             </cart-item>
-            <p class="total-cart-price" v-show="!cartItems.length == 0">Total cart products price: getSum(item) </p>
+            <p class="total-cart-price" v-show="!cartItems.length == 0">Total cart products price: ${this.sum} </p>
             </div>
         </div>
     `
