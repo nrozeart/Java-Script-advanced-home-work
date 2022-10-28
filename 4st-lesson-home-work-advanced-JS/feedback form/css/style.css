@@ -1,0 +1,27 @@
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+input {
+    display: block;
+    margin: 0 0 10px 0;
+}
+
+.btn {
+    width: 100px;
+}
+
+.invalid {
+    border: 2px solid red;
+}
+
+.valid {
+    border: 2px solid green;
+}
+
+.error-msg {
+    color: red;
+    ;
+}
